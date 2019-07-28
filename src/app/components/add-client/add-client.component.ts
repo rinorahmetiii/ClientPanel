@@ -1,5 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { ClientService } from '../../services/client.service';
 import { FlashMessagesService } from 'angular2-flash-messages';
+import { Router } from '@angular/router';
 
 import { Client } from '../../models/Client';
 
@@ -20,7 +22,11 @@ export class AddClientComponent implements OnInit {
   disableBalanceOnAdd: boolean = false;
   @ViewChild('clientForm', {static: false}) form: any;
 
-  constructor(private flashMessage: FlashMessagesService) { }
+  constructor(
+    private flashMessage: FlashMessagesService,
+    private clientService: ClientService,
+    private router: Router
+    ) { }
 
   ngOnInit() {
   }
@@ -38,12 +44,13 @@ export class AddClientComponent implements OnInit {
       });
     } else {
       // Add New client
-      
+      this.clientService.newClient(value);
       // Show message
       this.flashMessage.show('New client added', {
         cssClass: 'alert-success', timeout: 4000
       });
       // Redirect to dash
+      this.router.navigate(['/']);
     }
   }
 }
