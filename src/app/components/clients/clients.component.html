@@ -6,6 +6,7 @@
         <h5 class="text-right text-secondary">Total Owned: {{ totalOwned | currency }}</h5>
     </div>
 </div>
+<div style="overflow-x:auto;">
 <table *ngIf="clients?.length > 0;else noClients" class="table table-striped">
     <thead class="thead-inverse">
         <tr>
@@ -24,6 +25,7 @@
         </tr>
     </tbody>
 </table>
+</div>
 
 <ng-template # noClients>
     <hr>
