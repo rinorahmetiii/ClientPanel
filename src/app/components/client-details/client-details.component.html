@@ -27,8 +27,22 @@
                     >
                     {{ client.balance | currency }}
                     </span>
-
+                    <small>
+                        <a (click)="showBalanceUpdateInput = !showBalanceUpdateInput">
+                            <i class="fa fa-pencil"></i>
+                        </a>
+                    </small>
                 </h3>
+                <div class="clearfix">
+                    <form *ngIf="showBalanceUpdateInput" (submit)="updateBalance()">
+                        <div class="input-group">
+                            <input type="number" name="balance" class="form-control" [(ngModel)]="client.balance">
+                            <span class="input-group-btn">
+                                <button type="submit" class="btn btn-primary">Update</button>
+                            </span>
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
 
